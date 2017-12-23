@@ -2,7 +2,7 @@
 # Dockerfile for fteproxy
 #
 
-FROM alpine
+FROM alpine:3.7
 MAINTAINER LEE <norelpy@lihaixin.name>
 
 RUN set -xe \
@@ -14,6 +14,7 @@ RUN set -xe \
                   python-dev \
                   py-pip \
     && pip install --upgrade pip \
+    && pip install fteproxy \
     && apk del build-base \
                gmp-dev \
                python-dev \
