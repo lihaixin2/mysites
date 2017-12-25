@@ -1,0 +1,14 @@
+bash -x list-purecon-allip.sh
+docker run --restart=always --name nginx -d -p 83:80  nginx
+docker cp ./allip.txt nginx:/usr/share/nginx/html
+
+ wget http://www.softether-download.com/files/softether/v4.24-9651-beta-2017.10.23-tree/Windows/SoftEther_VPN_Server_and_VPN_Bridge/softether-vpnserver_vpnbridge-v4.24-9651-beta-2017.10.23-windows-x86_x64-intel.exe
+mv softether-vpnserver_vpnbridge-v4.24-9651-beta-2017.10.23-windows-x86_x64-intel.exe vpn.exe
+docker cp vpn.exe nginx:/usr/share/nginx/html
+
+wget https://download.teamviewer.com/download/TeamViewer_Setup.exe   其他OS版本到官方下载
+
+
+所有拨号服务器列表 http://104.238.156.61:83/allip.txt
+桥接软件地址：http://104.238.156.61:83/vpn.exe
+管理密码为：12345678
