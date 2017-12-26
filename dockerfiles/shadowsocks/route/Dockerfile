@@ -15,13 +15,12 @@ RUN set -ex \
                           libev \
                           libsodium \
                           mbedtls \
-                          pcre \
+                          pcre iptables iproute2 curl drill ipset openssh-client \
     && apk add --no-cache \
                --virtual TMP autoconf \
                              automake \
                              build-base \
                              c-ares-dev \
-                             curl \
                              gettext-dev \
                              libev-dev \
                              libsodium-dev \
@@ -47,18 +46,13 @@ ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
 ENV LOCAL_ADDR      0.0.0.0
 ENV LOCAL_PORT      60080
+ENV LOCAL_NET	192.168.3.0/24
 ENV METHOD      chacha20-ietf-poly1305
 ENV PASSWORD	pwd
 ENV TIMEOUT     300
 ENV OPTIONS         -v
-EXPOSE $LOCAL_PORT/tcp
 
-CMD ss-redir  -s "$SERVER_ADDR" \
-              -p "$SERVER_PORT" \
-              -b "$LOCAL_ADDR" \
-	      -l "$LOCAL_PORT" \
-	      -m "$METHOD"      \
-              -k "$PASSWORD"    \
-              -t "$TIMEOUT"     \
-              -u                \
-              --fast-open $OPTIONS
+ADD ./run-route /
+RUN chmod +x /run-route
+
+CMD ["/run-route"]
