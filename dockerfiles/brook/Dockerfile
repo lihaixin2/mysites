@@ -11,9 +11,11 @@ ENV serverlistenip 0.0.0.0:61089
 ENV clientlistenip 0.0.0.0:1080
 ENV clientip	127.0.0.1
 ENV password	pwd
-ARG OPTIONS
+ENV OPTIONS	""
+ENV tcpDeadline	0
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
 

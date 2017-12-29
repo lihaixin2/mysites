@@ -8,7 +8,7 @@ sleep 2
 $execfile --help
 if [[ ${protocol} == "server" ]]; then
 	$execfile $protocol --help
-	$execfile $protocol --listen ${serverlistenip} --password ${password} --tcpDeadline 60 $OPTIONS
+	$execfile $protocol --listen ${serverlistenip} --password ${password} --tcpDeadline $tcpDeadline $OPTIONS
 elif [[ ${protocol} == "client" ]]; then
 	$execfile $protocol --help
 	$execfile $protocol --listen $clientlistenip --ip $clientip  --server $serverlistenip  --password $password $OPTIONS  
