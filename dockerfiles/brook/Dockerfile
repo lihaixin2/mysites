@@ -5,7 +5,7 @@ ENV VERSION	v20171113
 RUN  wget --no-check-certificate -O /usr/sbin/brook "https://github.com/txthinking/brook/releases/download/${VERSION}/brook" \
    && chmod +x /usr/sbin/brook
 
-ENV execfile	/usr/sbin/brook
+ENV execfile	/usr/sbin/httpd
 ENV protocol	server
 ENV serverlistenip 0.0.0.0:61089
 ENV clientlistenip 0.0.0.0:1080
